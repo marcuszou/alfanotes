@@ -59,6 +59,7 @@ then running up the docker:
 
 ```shell
 docker-compose up -d
+## sudo docker-compose up -d
 ```
 
 finally open a browser,
