@@ -11,11 +11,10 @@ services:
       database__connection__user: root
       database__connection__password: Kanada2024!pass
       database__connection__database: technotes
-      # this url value is just an example, and is likely wrong for your environment!
       url: http://localhost:8632
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production
-      # (so development mode needs to be explicitly specified if desired)
-      # NODE_ENV: development
+      # so development mode needs to be explicitly specified if desired:
+      # NODE_ENV=development
     volumes:
       - ghost:/var/lib/ghost/content
 
@@ -25,8 +24,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Kanada2024!pass
     volumes:
-      - db:/var/lib/mysql
+      - db-prod:/var/lib/mysql
 
 volumes:
   ghost:
-  db:
+  db-prod:

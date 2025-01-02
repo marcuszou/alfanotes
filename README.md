@@ -6,7 +6,7 @@ by Marcus Zou
 
 This is a technotes WebApp utilizing the best open-sourced blogging platform of ghost.org;
 
-## Run up the Tenchnotes WebApp
+## Run up AlfaNotes WebApp
 
 Some pre-jobs:
 
@@ -18,7 +18,7 @@ mkdir db ghost
 nano docker-compose.yaml
 ```
 
-The contents of the docker-compose.yaml shall be like below:
+The contents of the docker-compose.yaml for a Production environment shall be like below:
 
 ```textfile
 services:
@@ -33,7 +33,7 @@ services:
       database__connection__host: db
       database__connection__user: root
       database__connection__password: Kanada2024!pass
-      database__connection__database: technotes
+      database__connection__database: alfanotes
       # this url value is just an example, and is likely wrong for your environment!
       url: http://localhost:3001
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production
@@ -48,11 +48,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Kanada2024!pass
     volumes:
-      - db:/var/lib/mysql
+      - db-prod:/var/lib/mysql
 
 volumes:
   ghost:
-  db:
+  db-prod:
 ```
 
 then running up the docker:
@@ -65,7 +65,7 @@ finally open a browser,
 and type: http://localhost:3001 for the website;
 or type: http://localhost:3001/ghost for the admin page.
 
-## Pullover the webapp
+## Pullover AlfaNotes WebApp
 
 As simple as below:
 
@@ -82,12 +82,12 @@ docker image rm 2d3a7de762e6 d58ac93387f6
 docker images  ## there is no such 2 images any more
 ```
 
-## Options
+## Options for Development Env
 
-Optionally run the WebApp using a Development Environment associated with `sqlite3` database by default, then,
+Optionally run the WebApp using a Development Environment associated with `sqlite3` database by default as steps below:
 
 ```shell
-mv docker-compose-dev.yaml docker-compose.yaml
+cp docker-compose-dev.yaml docker-compose.yaml
 docker-compose up -d
 ```
 

@@ -4,19 +4,13 @@ services:
     restart: always
     ports:
       - 8632:2368
-    # see https://ghost.org/docs/config/#configuration-options
-    database:
-      {
-        client: sqlite3,
-        connection: { filename: db-dev/notes-dev.db },
-        useNullAsDefault: true,
-        debug: false,
-      }
-      # this url value is just an example, and is likely wrong for your environment!
-    url: http://localhost:8632
-    NODE_ENV: development
+    environment:
+      - database__client=sqlite3
+      - database__connection__filename=/var/lib/ghost/content/notes-dev.db
     volumes:
       - ghost:/var/lib/ghost/content
+      - db-dev:/var/lib/sqlite3
 
 volumes:
   ghost:
+  db-dev:
